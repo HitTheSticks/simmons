@@ -1,7 +1,5 @@
 package com.htssoft.simmons;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  * This class offers an entry point for spawning a new process.
@@ -18,6 +16,9 @@ import java.util.Iterator;
  * it is implemented with fork()/setsid()/exec().
  * */
 public class Spawn {
+	static {
+		System.loadLibrary("simmons");
+	}
 	
 	public static void spawn(String programPath, String[] arguments){
 		if (isUnix()){
@@ -54,7 +55,7 @@ public class Spawn {
 	/**
 	 * Is this a unix machine?
 	 * */
-	private static boolean isUnix(){
+	public static boolean isUnix(){
 		String os = System.getProperty("os.name").toLowerCase();
 		return (os.contains("mac") || os.contains("nix") || os.contains("nux"));
 	}
@@ -62,7 +63,7 @@ public class Spawn {
 	/**
 	 * Is this a windows machine?
 	 * */
-	private static boolean isWindows(){
+	public static boolean isWindows(){
 		String os = System.getProperty("os.name").toLowerCase();
 		return os.contains("win");
 	}

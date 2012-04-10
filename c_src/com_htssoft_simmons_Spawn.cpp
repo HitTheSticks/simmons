@@ -54,7 +54,7 @@ JNIEXPORT void JNICALL Java_com_htssoft_simmons_Spawn_backgroundSpawn(JNIEnv *en
 
 		argV[i] = (char *) malloc(sizeof(char) * (singleArgLength + 1));
 		memcpy(argV[i], argumentStringUTF, singleArgLength);
-		argv[i][singleArgLength] = '\0';
+		argV[i][singleArgLength] = '\0';
 
 		env->ReleaseStringUTFChars(singleArgument, argumentStringUTF);
 	}
@@ -94,10 +94,10 @@ JNIEXPORT void JNICALL Java_com_htssoft_simmons_Spawn_backgroundWindowsSpawn (JN
 	memcpy(commandLineString, commandLineUTF, commandLineLength);
 	commandLineString[commandLineLength] = '\0';
 
-	env->ReleaseStringUTFChars(commandLineUTF);
+	env->ReleaseStringUTFChars(commandLine, commandLineUTF);
 
-	STARTUPINFO *startupInfo = malloc(sizeof(STARTUPINFO));
-	PROCESS_INFORMATION *procInfo = malloc(sizeof(PROCESS_INFORMATION));
+	STARTUPINFO *startupInfo = (STARTUPINFO*) malloc(sizeof(STARTUPINFO));
+	PROCESS_INFORMATION *procInfo = (PROCESS_INFORMATION*) malloc(sizeof(PROCESS_INFORMATION));
 	memset(startupInfo, 0, sizeof(STARTUPINFO));
 	memset(procInfo, 0, sizeof(PROCESS_INFORMATION));
 
@@ -106,7 +106,7 @@ JNIEXPORT void JNICALL Java_com_htssoft_simmons_Spawn_backgroundWindowsSpawn (JN
 				  NULL,
 				  NULL,
 				  FALSE,
-				  CREATE_DEFAULT_ERROR_MORE,
+				  CREATE_DEFAULT_ERROR_MODE,
 				  NULL,
 				  NULL,
 				  startupInfo,

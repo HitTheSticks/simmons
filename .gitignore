@@ -4,3 +4,5 @@
 bin
 nativelib
 obj
+vcpp/Debug
+vcpp/ipch
