@@ -6,3 +6,4 @@ nativelib
 obj
 vcpp/Debug
 vcpp/ipch
+target

@@ -1,0 +1,51 @@
+<project name="simmons" basedir=".">
+	<description>
+		Build the simmons spawning library.
+	</description>
+
+	<property name="src.dir" location="${basedir}/src" />
+	<property name="test.dir" location="${basedir}/test" />
+	<property name="target.dir" location="${basedir}/target" />
+	
+	<target name="clean">
+		<delete dir="${target.dir}" />
+		<delete file="${basedir}/simmons.jar" />
+	</target>
+	
+	<target name="init">
+		<mkdir dir="${target.dir}" />
+		<mkdir dir="${basedir}/nativelib" />
+		<mkdir dir="${basedir}/obj" />
+	</target>
+	
+	<target name="compile" depends="init">
+		<javac srcdir="${src.dir}" destdir="${target.dir}" />
+	</target>
+	
+	<target name="tests" depends="init">
+		<javac srcdir="${test.dir}" destdir="${target.dir}" />
+	</target>
+	
+	<target name="jar" depends="compile">
+		<jar jarfile="${basedir}/simmons.jar">
+			<fileset dir="${target.dir}" />
+			<manifest>
+				<attribute name="Built-By" value="Hit the Sticks, LLC"/>
+			</manifest>
+		</jar>
+	</target>
+	
+	<target name="testjar" depends="compile,tests">
+		<jar jarfile="${basedir}/simmons.jar">
+			<fileset dir="${target.dir}" />
+			<manifest>
+				<attribute name="Built-By" value="Hit the Sticks, LLC"/>
+			</manifest>
+		</jar>
+	</target>
+	
+	<target name="ud" depends="clean,jar">
+		<copy file="${basedir}/alamode.jar" todir="${basedir}/scripts" />
+	</target>
+
+</project>
