@@ -9,7 +9,7 @@ public class SpawnTest {
 			testProgram = "/usr/bin/yes";
 		}
 		else {
-			testProgram = "cmd.exe";
+			testProgram = "C:\\WINDOWS\\explorer.exe";
 		}
 		
 		Spawn.spawn(testProgram, new String[]{});
