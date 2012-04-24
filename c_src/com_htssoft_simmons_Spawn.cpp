@@ -22,13 +22,25 @@
 #include <stdlib.h>
 #include <string.h>
 
-#ifdef LINUX
+void JNU_ThrowByName(JNIEnv *env, const char *name, const char *msg) {
+     jclass cls = env->FindClass(name);
+     /* if cls is NULL, an exception has already been thrown */
+     if (cls != NULL) {
+         env->ThrowNew(cls, msg);
+     }
+     /* free the local ref */
+     env->DeleteLocalRef(cls);
+}
 
+
+#ifdef LINUX
 #include <unistd.h>
+#include <errno.h>
 
 void doExec(char *exePath, char **argv){
 	setsid();
 	execv(exePath, argv);
+	exit(1); //if we get here, there was an issue. Just exit.
 }
 
 JNIEXPORT void JNICALL Java_com_htssoft_simmons_Spawn_backgroundSpawn(JNIEnv *env,
@@ -61,8 +73,16 @@ JNIEXPORT void JNICALL Java_com_htssoft_simmons_Spawn_backgroundSpawn(JNIEnv *en
 
 	argV[argsLength] = NULL;
 
-	if (!fork()){
+	int forkResult = fork();
+
+	if (!forkResult){ //this is the child process.
 		doExec(programString, argV);
+	}
+
+	if (forkResult < 0){ //we're in the parent, but the fork failed for some reason.
+		int syserr = errno;
+		JNU_ThrowByName(env, "java/lang/Exception", strerror(syserr));
+		return;
 	}
 
 	for (int i = 0; i < argsLength; i++){
@@ -71,9 +91,24 @@ JNIEXPORT void JNICALL Java_com_htssoft_simmons_Spawn_backgroundSpawn(JNIEnv *en
 
 	free(programString);
 }
+
+JNIEXPORT void JNICALL Java_com_htssoft_simmons_Spawn_backgroundWindowsSpawn (JNIEnv *env, jclass clz,
+			jstring executablePath, jstring commandLine){
+	JNU_ThrowByName(env, "java/lang/UnsupportedOperationException", "Cannot execute Windows spawn on unix platform.");
+	return;
+}
+
 #elif defined _WIN32
 
 #include <Windows.h>
+
+JNIEXPORT void JNICALL Java_com_htssoft_simmons_Spawn_backgroundSpawn(JNIEnv *env,
+		jclass clz,
+		jstring executablePath,
+		jobjectArray arguments){
+	JNU_ThrowByName(env, "java/lang/UnsupportedOperationException", "Cannot execute unix spawn on Windows platform.");
+	return;
+}
 
 JNIEXPORT void JNICALL Java_com_htssoft_simmons_Spawn_backgroundWindowsSpawn (JNIEnv *env, jclass clz,
 			jstring executablePath, jstring commandLine){
@@ -101,16 +136,35 @@ JNIEXPORT void JNICALL Java_com_htssoft_simmons_Spawn_backgroundWindowsSpawn (JN
 	memset(startupInfo, 0, sizeof(STARTUPINFO));
 	memset(procInfo, 0, sizeof(PROCESS_INFORMATION));
 
-	CreateProcess(programString,
-				  commandLineString,
-				  NULL,
-				  NULL,
-				  FALSE,
-				  CREATE_DEFAULT_ERROR_MODE,
-				  NULL,
-				  NULL,
-				  startupInfo,
-				  procInfo);
+	DWORD cp_res = CreateProcess(programString,
+				  	  	  	   commandLineString,
+				  	  	  	   NULL,
+				  	  	  	   NULL,
+				  	  	  	   FALSE,
+				  	  	  	   CREATE_DEFAULT_ERROR_MODE,
+				  	  	  	   NULL,
+				  	  	  	   NULL,
+				  	  	  	   startupInfo,
+				  	  	  	   procInfo);
+	if (!cp_res){
+
+		DWORD errorCode = GetLastError();
+		LPVOID lpMsgBuf;
+
+	    FormatMessage(
+	        FORMAT_MESSAGE_ALLOCATE_BUFFER |
+	        FORMAT_MESSAGE_FROM_SYSTEM |
+	        FORMAT_MESSAGE_IGNORE_INSERTS,
+	        NULL,
+	        errorCode,
+	        MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+	        (LPTSTR) &lpMsgBuf,
+	        0, NULL );
+
+		JNU_ThrowByName(env, "java/lang/Exception", (LPTSTR) lpMsgBuf);
+		LocalFree(lpMsgBuf);
+		return;
+	}
 }
 
 

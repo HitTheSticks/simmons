@@ -17,7 +17,13 @@ package com.htssoft.simmons;
  * */
 public class Spawn {
 	static {
-		System.loadLibrary("simmons");
+		try {
+			System.loadLibrary("simmons");
+		}
+		catch (Exception ex){
+			System.err.println("Cannot load libsimmons.");
+			ex.printStackTrace();
+		}
 	}
 	
 	public static void spawn(String programPath, String[] arguments){

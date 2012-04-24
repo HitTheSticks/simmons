@@ -40,12 +40,8 @@
 			<fileset dir="${target.dir}" />
 			<manifest>
 				<attribute name="Built-By" value="Hit the Sticks, LLC"/>
+				<attribute name="Main-Class" value="com.htssoft.simmons.test.SpawnTest" />
 			</manifest>
 		</jar>
 	</target>
-	
-	<target name="ud" depends="clean,jar">
-		<copy file="${basedir}/alamode.jar" todir="${basedir}/scripts" />
-	</target>
-
 </project>
