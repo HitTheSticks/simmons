@@ -35,10 +35,14 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <TargetName>simmons</TargetName>
-    <OutDir>$(SolutionDir)\..\nativelib</OutDir>
+    <OutDir>$(SolutionDir)\..\nativelib\</OutDir>
+    <IncludePath>C:\Program Files\Java\jdk1.6.0_25\include\win32;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)\..\nativelib\</OutDir>
+    <TargetName>simmons</TargetName>
+    <IncludePath>C:\Program Files\Java\jdk1.6.0_25\include\win32;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
