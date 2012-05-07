@@ -1,22 +1,22 @@
-﻿Build started 5/2/2012 10:06:32 AM.
+﻿Build started 5/7/2012 7:33:18 AM.
 Project "\\vmware-host\Shared Folders\gamedev\workspace\simmons\vcpp\simmons_jni.vcxproj" on node 2 (build target(s)).
 InitializeBuildStatus:
-  Touching "Release\simmons_jni.unsuccessfulbuild".
+  Creating "Release\simmons_jni.unsuccessfulbuild" because "AlwaysCreate" was specified.
 ClCompile:
-  C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Program Files\Java\jdk1.6.0_25\include" /Zi /nologo /W3 /WX- /O2 /Oy- /D WIN32 /D NDEBUG /D _WINDOWS /D _USRDLL /D SIMMONS_JNI_EXPORTS /D _WINDLL /Gm- /EHsc /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ..\c_src\com_htssoft_simmons_Spawn.cpp
+  C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Program Files\Java\jdk1.6.0_25\include" /Zi /nologo /W3 /WX- /O2 /Oy- /D WIN32 /D NDEBUG /D _WINDOWS /D _USRDLL /D SIMMONS_JNI_EXPORTS /D _WINDLL /Gm- /EHsc /MT /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ..\c_src\com_htssoft_simmons_Spawn.cpp
   com_htssoft_simmons_Spawn.cpp
 ManifestResourceCompile:
   C:\Program Files\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"Release\simmons.dll.embed.manifest.res" Release\simmons_manifest.rc 
 Link:
-  C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"\\vmware-host\Shared Folders\gamedev\workspace\simmons\vcpp\\..\nativelib\simmons.dll" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release\simmons.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"\\vmware-host\Shared Folders\gamedev\workspace\simmons\nativelib\simmons.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"\\vmware-host\Shared Folders\gamedev\workspace\simmons\vcpp\\..\nativelib\simmons.lib" /MACHINE:X86 /DLL Release\simmons.dll.embed.manifest.res
+  C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"\\vmware-host\Shared Folders\gamedev\workspace\simmons\vcpp\\..\nativelib\simmons.dll" /INCREMENTAL /NOLOGO /MANIFEST /ManifestFile:"Release\simmons.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"\\vmware-host\Shared Folders\gamedev\workspace\simmons\nativelib\simmons.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"\\vmware-host\Shared Folders\gamedev\workspace\simmons\vcpp\\..\nativelib\simmons.lib" /MACHINE:X86 /DLL Release\simmons.dll.embed.manifest.res
   Release\com_htssoft_simmons_Spawn.obj
 LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/OPT:ICF' specification
      Creating library \\vmware-host\Shared Folders\gamedev\workspace\simmons\vcpp\\..\nativelib\simmons.lib and object \\vmware-host\Shared Folders\gamedev\workspace\simmons\vcpp\\..\nativelib\simmons.exp
 Manifest:
-  C:\Program Files\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"Release\simmons.dll.embed.manifest" /manifest Release\simmons.dll.intermediate.manifest
+  C:\Program Files\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"Release\simmons.dll.embed.manifest" /manifest Release\simmons.dll.intermediate.manifest "C:\Program Files\Microsoft Visual Studio 10.0\VC\Include\Manifest\dpiaware.manifest"
   C:\Program Files\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"Release\simmons.dll.embed.manifest.res" Release\simmons_manifest.rc 
 LinkEmbedManifest:
-  C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"\\vmware-host\Shared Folders\gamedev\workspace\simmons\vcpp\\..\nativelib\simmons.dll" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release\simmons.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"\\vmware-host\Shared Folders\gamedev\workspace\simmons\nativelib\simmons.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"\\vmware-host\Shared Folders\gamedev\workspace\simmons\vcpp\\..\nativelib\simmons.lib" /MACHINE:X86 /DLL Release\simmons.dll.embed.manifest.res
+  C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"\\vmware-host\Shared Folders\gamedev\workspace\simmons\vcpp\\..\nativelib\simmons.dll" /INCREMENTAL /NOLOGO /MANIFEST /ManifestFile:"Release\simmons.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"\\vmware-host\Shared Folders\gamedev\workspace\simmons\nativelib\simmons.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"\\vmware-host\Shared Folders\gamedev\workspace\simmons\vcpp\\..\nativelib\simmons.lib" /MACHINE:X86 /DLL Release\simmons.dll.embed.manifest.res
   Release\com_htssoft_simmons_Spawn.obj
 LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/OPT:ICF' specification
      Creating library \\vmware-host\Shared Folders\gamedev\workspace\simmons\vcpp\\..\nativelib\simmons.lib and object \\vmware-host\Shared Folders\gamedev\workspace\simmons\vcpp\\..\nativelib\simmons.exp
@@ -28,4 +28,4 @@ Done Building Project "\\vmware-host\Shared Folders\gamedev\workspace\simmons\vc
 
 Build succeeded.
 
-Time Elapsed 00:00:03.92
+Time Elapsed 00:00:02.82
